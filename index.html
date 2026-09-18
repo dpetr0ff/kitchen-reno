@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kitchen Renovation — Frøbels Allé</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAACwElEQVR4nO3dPY4TQRhFUYPYGBthAQQshJCAvRCxNQJLgCzuYMRPPTznRKPRBF2fr7rbdpfmxaf3by7wIy9PHwC7xEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcpFenD+Cb1+8+fv3584e3B4/k39tc+4uR/0j9/XQY6WPisqKMGyMDOR/HyCDWLIzlfBzMEgdJHKTzcYzcma9ZGMv5OC4bg5gyMpCJOC4z41iwM4qhT0h3hsLVypmDQeIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SENPgm3uF/03Ntdur+yikT4mLivKuDEykPNxjAxizcJYzsfBLHGQxEE6H8fInfmahbGcj+OyMYgpIwOZiOMyM44FO6MY+oR0ZyhcrZw5GCQOkjhI4iCJgyQOkjhI4iCJgyQOkjhI4iCJgyQOkjhIQ89zPGc3GxFGHm0Rx2E/3J9y/eXxRIbi2Nwv+rTfPOandy69fvfx7Bzslf2Tfum1vHPJB/uYuCF9jDIuD7SQq/NxPNhA71zO/as+OJ/zcTBLHCRxkM7H8b+8a73TIy3nfByXBxro/Qv5G3/5x03EcXmIPh5gCTdWPgR7nn76NvVscCtnjufp6df++Klo6LuV5+lagG9lSSM13HBZIYmDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIH0B9i936WjN6UEAAAAASUVORK5CYII=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Kitchen Reno">
+<meta name="theme-color" content="#B98A5E">
+<style>
+  :root{
+    --bg:#FAF8F4;
+    --surface:#FFFFFF;
+    --line:#E8E3D9;
+    --ink:#2B2A27;
+    --ink-soft:#8C8577;
+    --wood:#B98A5E;
+    --wood-soft:#F1E4D4;
+    --sage:#748B72;
+    --sage-soft:#E4EAE1;
+    --clay:#BD6B4C;
+    --clay-soft:#F3E1D9;
+    --radius:10px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1C1A17;
+      --surface:#242220;
+      --line:#39362F;
+      --ink:#EFEAE2;
+      --ink-soft:#9C9587;
+      --wood:#D6A876;
+      --wood-soft:#332A20;
+      --sage:#8FAA8C;
+      --sage-soft:#26302484;
+      --clay:#D98A69;
+      --clay-soft:#3A281F;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#1C1A17;
+    --surface:#242220;
+    --line:#39362F;
+    --ink:#EFEAE2;
+    --ink-soft:#9C9587;
+    --wood:#D6A876;
+    --wood-soft:#332A20;
+    --sage:#8FAA8C;
+    --sage-soft:#263024;
+    --clay:#D98A69;
+    --clay-soft:#3A281F;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Manrope', -apple-system, 'Segoe UI', sans-serif;
+    font-size:16px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{margin:0;font-family:'Manrope',sans-serif;}
+  .wrap{max-width:520px;margin:0 auto;padding:0 20px;}
+  button{font-family:inherit;}
+
+  /* ---------- App shell ---------- */
+  .app{padding-bottom:78px;min-height:100vh;}
+
+  header{padding:22px 0 14px;}
+  .head-top{display:flex;align-items:center;justify-content:space-between;}
+  header h1{font-size:1.05rem;font-weight:700;letter-spacing:-0.01em;}
+  header .sub{font-size:0.82rem;color:var(--ink-soft);margin-top:2px;}
+  .theme-btn{
+    border:none;background:var(--surface);border:1px solid var(--line);
+    width:32px;height:32px;border-radius:50%;
+    color:var(--ink-soft);cursor:pointer;font-size:0.9rem;
+    display:flex;align-items:center;justify-content:center;
+  }
+
+  /* ---------- Bottom tab nav ---------- */
+  nav.tabbar{
+    position:fixed;left:0;right:0;bottom:0;z-index:30;
+    background:var(--surface);
+    border-top:1px solid var(--line);
+    padding:8px 0 max(8px, env(safe-area-inset-bottom));
+  }
+  .tabbar-inner{max-width:520px;margin:0 auto;display:flex;}
+  .tab-btn{
+    flex:1;background:none;border:none;cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;gap:3px;
+    padding:6px 4px;color:var(--ink-soft);
+  }
+  .tab-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.6;}
+  .tab-btn span{font-size:0.68rem;font-weight:600;}
+  .tab-btn.active{color:var(--wood);}
+  .tab-btn.active svg{stroke:var(--wood);}
+
+  .view{display:none;}
+  .view.active{display:block;}
+
+  /* ---------- Overview ---------- */
+  .ring-card{
+    display:flex;flex-direction:column;align-items:center;
+    padding:28px 0 20px;
+  }
+  .ring-wrap{position:relative;width:150px;height:150px;}
+  .ring-wrap svg{width:100%;height:100%;transform:rotate(-90deg);}
+  .ring-track{fill:none;stroke:var(--line);stroke-width:8;}
+  .ring-fill{fill:none;stroke:var(--wood);stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset .4s ease;}
+  .ring-label{
+    position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+  }
+  .ring-label .pct{font-size:1.6rem;font-weight:800;}
+  .ring-label .of{font-size:0.72rem;color:var(--ink-soft);margin-top:2px;}
+
+  .section-label{
+    font-size:0.72rem;font-weight:700;color:var(--ink-soft);
+    text-transform:none;letter-spacing:0.01em;margin:22px 0 10px;
+  }
+
+  .next-card{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:16px;display:flex;align-items:flex-start;gap:12px;
+  }
+  .next-card .dot{
+    width:8px;height:8px;border-radius:50%;background:var(--wood);
+    margin-top:7px;flex:none;
+  }
+  .next-card .t{font-weight:700;font-size:0.95rem;}
+  .next-card .w{font-size:0.8rem;color:var(--ink-soft);margin-top:3px;}
+  .next-card button{
+    margin-top:10px;background:var(--wood-soft);color:var(--wood);
+    border:none;border-radius:6px;padding:7px 12px;font-size:0.8rem;font-weight:700;
+    cursor:pointer;
+  }
+  .all-done{font-size:0.9rem;color:var(--sage);font-weight:600;padding:14px 0;}
+
+  .mini-budget{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:16px;
+  }
+  .mini-budget .row{display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:8px;}
+  .mini-budget .row.total{font-weight:700;border-top:1px solid var(--line);padding-top:8px;margin-top:4px;}
+  .mini-budget .num{font-variant-numeric:tabular-nums;}
+  .mini-bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-top:10px;}
+  .mini-bar-fill{height:100%;background:var(--sage);}
+  .mini-bar-fill.over{background:var(--clay);}
+
+  .phase-strip{display:flex;gap:5px;margin-top:14px;}
+  .phase-dot{flex:1;height:4px;border-radius:2px;background:var(--line);}
+  .phase-dot.done{background:var(--sage);}
+  .phase-dot.active{background:var(--wood);}
+
+  /* ---------- Steps (accordion) ---------- */
+  .phase-item{border-bottom:1px solid var(--line);}
+  .phase-item:first-child{border-top:1px solid var(--line);}
+  .phase-head{
+    width:100%;background:none;border:none;cursor:pointer;
+    display:flex;align-items:center;gap:12px;
+    padding:16px 0;text-align:left;color:var(--ink);
+  }
+  .phase-num{
+    width:26px;height:26px;border-radius:50%;
+    border:1px solid var(--line);flex:none;
+    display:flex;align-items:center;justify-content:center;
+    font-size:0.75rem;font-weight:700;color:var(--ink-soft);
+  }
+  .phase-item.complete .phase-num{background:var(--sage-soft);border-color:var(--sage);color:var(--sage);}
+  .phase-head .titles{flex:1;}
+  .phase-head .pt{font-weight:700;font-size:0.95rem;}
+  .phase-head .pw{font-size:0.76rem;color:var(--ink-soft);margin-top:1px;}
+  .phase-head .count{font-size:0.76rem;color:var(--ink-soft);font-variant-numeric:tabular-nums;}
+  .chev{width:16px;height:16px;stroke:var(--ink-soft);fill:none;stroke-width:1.6;transition:transform .2s ease;flex:none;}
+  .phase-item.open .chev{transform:rotate(180deg);}
+
+  .phase-body{display:none;padding:0 0 16px 38px;}
+  .phase-item.open .phase-body{display:block;}
+
+  .step{padding:10px 0;border-top:1px solid var(--line);}
+  .step:first-child{border-top:none;}
+  .step-row{display:flex;gap:10px;align-items:flex-start;}
+  .step-check{
+    width:18px;height:18px;margin-top:2px;flex:none;
+    accent-color:var(--sage);
+  }
+  .step-title{font-size:0.88rem;font-weight:600;cursor:pointer;line-height:1.4;}
+  .step.done .step-title{color:var(--ink-soft);text-decoration:line-through;text-decoration-color:var(--line);}
+  .step-meta{display:flex;gap:8px;margin-top:4px;align-items:center;flex-wrap:wrap;}
+  .who-chip{font-size:0.7rem;color:var(--wood);background:var(--wood-soft);padding:2px 7px;border-radius:5px;font-weight:700;}
+  .cost-chip{font-size:0.7rem;color:var(--ink-soft);}
+  .step-detail{display:none;margin-top:8px;}
+  .step-detail.open{display:block;}
+  .step-desc{font-size:0.8rem;color:var(--ink-soft);line-height:1.5;margin-bottom:8px;}
+  .step-detail textarea{
+    width:100%;min-height:50px;font-family:inherit;font-size:0.82rem;
+    border:1px solid var(--line);border-radius:6px;background:var(--bg);
+    color:var(--ink);padding:8px;resize:vertical;
+  }
+  .step-detail textarea::placeholder{color:var(--ink-soft);opacity:0.7;}
+
+  /* ---------- Budget ---------- */
+  .scenario-toggle{
+    display:flex;background:var(--surface);border:1px solid var(--line);
+    border-radius:8px;padding:3px;margin-bottom:18px;
+  }
+  .scenario-btn{
+    flex:1;border:none;background:none;padding:8px 0;
+    font-size:0.8rem;font-weight:700;color:var(--ink-soft);
+    border-radius:6px;cursor:pointer;
+  }
+  .scenario-btn.active{background:var(--wood-soft);color:var(--wood);}
+
+  .budget-card{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:16px;margin-bottom:20px;
+  }
+  .field-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+  .field-row label{font-size:0.85rem;color:var(--ink-soft);}
+  .kr-input{
+    font-family:inherit;font-variant-numeric:tabular-nums;font-size:0.92rem;
+    padding:6px 9px;border:1px solid var(--line);border-radius:6px;
+    background:var(--bg);color:var(--ink);width:110px;text-align:right;
+  }
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0 14px;}
+  .stat{border:1px solid var(--line);border-radius:8px;padding:10px;}
+  .stat .n{font-size:1.05rem;font-weight:800;font-variant-numeric:tabular-nums;}
+  .stat .l{font-size:0.7rem;color:var(--ink-soft);margin-top:2px;}
+  .stat.over .n{color:var(--clay);}
+  .bar{height:10px;background:var(--line);border-radius:5px;overflow:hidden;}
+  .bar-fill{height:100%;background:var(--sage);}
+  .bar-fill.over{background:var(--clay);}
+  .budget-note{font-size:0.78rem;color:var(--ink-soft);margin-top:10px;line-height:1.5;}
+
+  .cat-row{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:11px 0;border-top:1px solid var(--line);gap:10px;
+  }
+  .cat-row:first-child{border-top:none;}
+  .cat-name{font-size:0.85rem;}
+  .cat-est{font-size:0.72rem;color:var(--ink-soft);margin-top:1px;font-variant-numeric:tabular-nums;}
+  .actual-input{width:88px;}
+
+  footer.foot{
+    max-width:520px;margin:8px auto 0;padding:14px 20px 0;
+    font-size:0.74rem;color:var(--ink-soft);
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
+  }
+  .reset-btn{
+    background:none;border:1px solid var(--line);color:var(--ink-soft);
+    border-radius:6px;padding:6px 10px;font-size:0.74rem;cursor:pointer;
+  }
+
+  input:focus-visible, textarea:focus-visible, button:focus-visible{
+    outline:2px solid var(--wood); outline-offset:1px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ring-fill, .step-detail, .phase-body{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="wrap">
+    <header>
+      <div class="head-top">
+        <div>
+          <h1>Kitchen renovation</h1>
+          <div class="sub">Frøbels Allé · gas → electric</div>
+        </div>
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </header>
+
+    <!-- OVERVIEW -->
+    <section class="view active" id="view-overview">
+      <div class="ring-card">
+        <div class="ring-wrap">
+          <svg viewBox="0 0 150 150">
+            <circle class="ring-track" cx="75" cy="75" r="64"></circle>
+            <circle class="ring-fill" id="ringFill" cx="75" cy="75" r="64" stroke-dasharray="402" stroke-dashoffset="402"></circle>
+          </svg>
+          <div class="ring-label">
+            <div class="pct" id="pctText">0%</div>
+            <div class="of" id="ofText">0 of 0 steps</div>
+          </div>
+        </div>
+        <div class="phase-strip" id="phaseStrip"></div>
+      </div>
+
+      <div class="section-label">Up next</div>
+      <div id="nextCardWrap"></div>
+
+      <div class="section-label">Budget</div>
+      <div class="mini-budget">
+        <div class="row"><span>Your budget</span><span class="num" id="ovBudget">–</span></div>
+        <div class="row"><span>Estimate (<span id="ovScenarioLabel">mid</span>)</span><span class="num" id="ovEstimate">–</span></div>
+        <div class="row total"><span>Spent so far</span><span class="num" id="ovSpent">–</span></div>
+        <div class="mini-bar"><div class="mini-bar-fill" id="ovBarFill"></div></div>
+      </div>
+    </section>
+
+    <!-- STEPS -->
+    <section class="view" id="view-steps">
+      <div id="phasesRoot"></div>
+    </section>
+
+    <!-- BUDGET -->
+    <section class="view" id="view-budget">
+      <div class="scenario-toggle" id="scenarioToggle">
+        <button class="scenario-btn" data-scenario="low">Low</button>
+        <button class="scenario-btn" data-scenario="mid">Mid</button>
+        <button class="scenario-btn" data-scenario="high">High</button>
+      </div>
+
+      <div class="budget-card">
+        <div class="field-row">
+          <label for="totalBudget">Your budget</label>
+          <input type="number" class="kr-input" id="totalBudget" min="0" step="1000">
+        </div>
+        <div class="stat-grid">
+          <div class="stat"><div class="n" id="estTotal">–</div><div class="l">Estimated total</div></div>
+          <div class="stat" id="spentStat"><div class="n" id="spentTotal">–</div><div class="l">Actually spent</div></div>
+        </div>
+        <div class="bar"><div class="bar-fill" id="budgetBarFill"></div></div>
+        <div class="budget-note" id="budgetNote"></div>
+      </div>
+
+      <div class="budget-card" id="catCard"></div>
+    </section>
+
+  </div>
+</div>
+
+<nav class="tabbar">
+  <div class="tabbar-inner">
+    <button class="tab-btn" data-tab="overview">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"></circle></svg>
+      <span>Overview</span>
+    </button>
+    <button class="tab-btn" data-tab="steps">
+      <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"></path><circle cx="20" cy="18" r="1.4" fill="currentColor" stroke="none"></circle></svg>
+      <span>Steps</span>
+    </button>
+    <button class="tab-btn" data-tab="budget">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5v9M9.5 9.3c0-1 1-1.8 2.5-1.8s2.5.8 2.5 1.7c0 2.3-5 1-5 3.3 0 .9 1 1.8 2.5 1.8s2.5-.8 2.5-1.8"></path></svg>
+      <span>Budget</span>
+    </button>
+  </div>
+</nav>
+
+<footer class="foot">
+  <span id="syncStatus">Syncing…</span>
+  <button class="reset-btn" id="resetBtn">Reset all</button>
+</footer>
+
+<script>
+const STORE_KEY = 'kitchen-reno-frobels-v2';
+
+const CATEGORIES = [
+  {id:'ikea',   name:'IKEA units (cabinets, doors)', low:25000, mid:45000, high:90000},
+  {id:'install',name:'Installation (independent fitter)', low:4500, mid:8000, high:11000},
+  {id:'appl',   name:'Appliances', low:15000, mid:25000, high:40000},
+  {id:'elec',   name:'Electrician', low:8000, mid:12000, high:18000},
+  {id:'plumb',  name:'Plumber (reconnect)', low:1500, mid:4000, high:8000},
+  {id:'gas',    name:'Gas disconnection', low:1500, mid:2500, high:3500},
+  {id:'floor',  name:'Flooring', low:2500, mid:4000, high:6000},
+  {id:'paint',  name:'Painting + window sill', low:1000, mid:2200, high:3800},
+  {id:'removal',name:'Old kitchen removal / skip', low:1500, mid:2750, high:4000},
+];
+
+const PHASES = [
+  {
+    id:'plan', title:'Design & quotes', when:'Weeks 1–3',
+    steps:[
+      {id:'p1', title:'Confirm the layout stays as-is', who:'You', desc:'Sink + dishwasher stay on the 2.50m wall, fridge + hob stay on the 2.70m wall. This avoids moving plumbing, the biggest cost driver.'},
+      {id:'p2', title:'Check window position on both walls', who:'You', desc:'Affects where upper cabinets and extractor hood ducting can go.'},
+      {id:'p3', title:'Book a free IKEA kitchen planning session', who:'IKEA planner', desc:'In-store (Gentofte or Taastrup) or online. Bring rough measurements — they produce a full parts list and quote.'},
+      {id:'p4', title:'Get final measurements confirmed', who:'IKEA / fitter', desc:'Don\u2019t order on your own measurements alone — older CPH walls are rarely straight.', cost:'install'},
+      {id:'p5', title:'Get 2–3 quotes for cabinet installation', who:'Independent fitter', desc:'Independents typically run 20–40% cheaper than IKEA\u2019s own install team.', cost:'install'},
+      {id:'p6', title:'Get 2–3 quotes for electrical work', who:'Elektriker', desc:'New dedicated circuit for the induction hob, plus any other new outlets.', cost:'elec'},
+      {id:'p7', title:'Get 2–3 quotes for plumbing work', who:'VVS\u2019er', desc:'Disconnecting/capping the gas line and reconnecting sink/dishwasher.', cost:'plumb'},
+      {id:'p8', title:'Get a quote for flooring', who:'Gulvlægger', desc:'Material + installation for roughly 6.75m².', cost:'floor'},
+      {id:'p9', title:'Confirm the extractor hood venting', who:'You + fitter', desc:'Check whether the existing ducting can be reused.'},
+      {id:'p10', title:'Set your final budget with a buffer', who:'You', desc:'Use the Budget tab once real quotes are in.'},
+    ]
+  },
+  {
+    id:'before', title:'Before work starts', when:'Weeks 3–5',
+    steps:[
+      {id:'b1', title:'Order the IKEA kitchen', who:'IKEA', desc:'Cabinets, doors, worktop, handles — only after final measurements are confirmed.', cost:'ikea'},
+      {id:'b2', title:'Order appliances', who:'IKEA or retailer', desc:'Hob, oven, fridge, dishwasher, extractor hood.', cost:'appl'},
+      {id:'b3', title:'Lock in dates with every tradesperson', who:'You', desc:'Good fitters, electricians and plumbers book out weeks to months ahead.'},
+      {id:'b4', title:'Arrange a skip or waste collection', who:'Container co. / fitter', desc:'For the old units, appliances and gas fittings.', cost:'removal'},
+      {id:'b5', title:'Tell your neighbors about noisy days', who:'You', desc:'A note in the stairwell goes a long way.'},
+      {id:'b6', title:'Plan a temporary cooking setup', who:'You', desc:'For the weeks without a kitchen.'},
+      {id:'b7', title:'Check delivery access', who:'Ejendomsadministrator', desc:'Confirm whether you need to book the lift.'},
+    ]
+  },
+  {
+    id:'demo', title:'Demolition', when:'1–2 days',
+    steps:[
+      {id:'d1', title:'Remove the old units and appliances', who:'You / fitter', desc:'Clear the space down to walls and floor.'},
+      {id:'d2', title:'Disconnect and cap the gas line', who:'VVS\u2019er', desc:'Legally required. Keep the paperwork.', cost:'gas'},
+      {id:'d3', title:'Check the floor and walls underneath', who:'You + fitter', desc:'Confirm nothing unexpected before new work starts.'},
+    ]
+  },
+  {
+    id:'rough', title:'Electrical & plumbing rough-in', when:'1–3 days',
+    steps:[
+      {id:'r1', title:'Run the new hob circuit + any other points', who:'Elektriker', desc:'Induction hobs need a dedicated circuit; dishwasher/oven usually do too.'},
+      {id:'r2', title:'Prep water and drain connections', who:'VVS\u2019er', desc:'Only needed at the existing sink/dishwasher position.'},
+      {id:'r3', title:'Patch wall damage from old fixtures', who:'Fitter / maler', desc:'Small repairs before painting.'},
+    ]
+  },
+  {
+    id:'finish', title:'Finishes', when:'Before cabinets go in',
+    steps:[
+      {id:'f1', title:'Paint the walls', who:'Maler / DIY', desc:'Easiest part to do yourself if you want to save money.', cost:'paint'},
+      {id:'f2', title:'Fix the window sill', who:'Tømrer / DIY', desc:'Repair or replace before the wall behind is finished.'},
+      {id:'f3', title:'Lay the new flooring', who:'Gulvlægger', desc:'Done before cabinets so it runs continuously underneath.', cost:'floor'},
+    ]
+  },
+  {
+    id:'install', title:'Installation', when:'3–5 days',
+    steps:[
+      {id:'i1', title:'Cabinets delivered and installed', who:'Fitter', desc:'Frames, doors, drawers go in first.'},
+      {id:'i2', title:'Worktop templated and cut', who:'Worktop supplier', desc:'After cabinets are fixed in place, so measurements are exact.'},
+      {id:'i3', title:'Appliances installed and connected', who:'Fitter + elektriker/VVS\u2019er', desc:'Hob, oven, dishwasher, fridge.'},
+      {id:'i4', title:'Extractor hood connected to ducting', who:'Fitter / VVS\u2019er', desc:'Final ventilation connection.'},
+    ]
+  },
+  {
+    id:'wrap', title:'Wrap-up', when:'Final day',
+    steps:[
+      {id:'w1', title:'Snagging walkthrough', who:'You + fitter', desc:'Check doors align, drawers run smoothly, no gaps.'},
+      {id:'w2', title:'Test every appliance', who:'You', desc:'Run each one before the fitter leaves.'},
+      {id:'w3', title:'File receipts and warranties', who:'You', desc:'Keep gas paperwork too — useful for a future sale.'},
+    ]
+  },
+];
+
+let state = {
+  theme:null, activeTab:'overview', scenario:'mid',
+  totalBudget:50000, openPhase:null,
+  stepDone:{}, stepNotes:{}, catActual:{}
+};
+
+const SUPABASE_URL = 'https://qpaokapwpyigdpakepyl.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_xhkKTsdivBnu_LSJPnGlfQ_4eiRFkQf';
+const SB_HEADERS = {
+  apikey: SUPABASE_KEY,
+  Authorization: 'Bearer ' + SUPABASE_KEY,
+  'Content-Type': 'application/json'
+};
+
+function setSyncStatus(text){
+  const el = document.getElementById('syncStatus');
+  if(el) el.textContent = text;
+}
+
+function loadLocal(){
+  try{
+    const raw = localStorage.getItem(STORE_KEY);
+    if(raw){ state = Object.assign(state, JSON.parse(raw)); }
+  }catch(e){}
+}
+function saveLocal(){
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){}
+}
+
+async function loadRemote(){
+  try{
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/kitchen_reno?id=eq.1&select=data`, { headers: SB_HEADERS });
+    if(!res.ok) throw new Error('fetch failed: ' + res.status);
+    const rows = await res.json();
+    if(rows && rows[0] && rows[0].data){
+      state = Object.assign(state, rows[0].data);
+    }
+    setSyncStatus('Synced');
+  }catch(e){
+    setSyncStatus('Offline — using last saved copy');
+  }
+}
+
+let saveTimer = null;
+function save(){
+  saveLocal();
+  clearTimeout(saveTimer);
+  setSyncStatus('Saving…');
+  saveTimer = setTimeout(async ()=>{
+    try{
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/kitchen_reno?id=eq.1`, {
+        method:'PATCH',
+        headers: Object.assign({Prefer:'return=minimal'}, SB_HEADERS),
+        body: JSON.stringify({ data: state, updated_at: new Date().toISOString() })
+      });
+      if(!res.ok) throw new Error('save failed: ' + res.status);
+      setSyncStatus('Synced');
+    }catch(e){
+      setSyncStatus('Could not sync — saved on this device only');
+    }
+  }, 500);
+}
+function kr(n){ return Math.round(n).toLocaleString('da-DK') + ' kr'; }
+
+function applyTheme(){
+  if(state.theme === 'dark') document.documentElement.setAttribute('data-theme','dark');
+  else if(state.theme === 'light') document.documentElement.setAttribute('data-theme','light');
+  else document.documentElement.removeAttribute('data-theme');
+}
+
+/* ---------- Tabs ---------- */
+function setTab(tab){
+  state.activeTab = tab;
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+tab).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab===tab));
+  save();
+}
+
+/* ---------- Overview ---------- */
+function renderOverview(){
+  let total=0, done=0;
+  const strip = document.getElementById('phaseStrip');
+  strip.innerHTML = '';
+  let nextStep=null, nextPhase=null;
+  PHASES.forEach(phase=>{
+    let pDone=0;
+    phase.steps.forEach(s=>{
+      total++;
+      if(state.stepDone[s.id]){ done++; pDone++; }
+      else if(!nextStep){ nextStep=s; nextPhase=phase; }
+    });
+    const d = document.createElement('div');
+    d.className='phase-dot' + (pDone===phase.steps.length?' done':(pDone>0?' active':''));
+    strip.appendChild(d);
+  });
+  const pct = total? Math.round(done/total*100):0;
+  document.getElementById('pctText').textContent = pct+'%';
+  document.getElementById('ofText').textContent = `${done} of ${total} steps`;
+  const circumference = 402;
+  const ring = document.getElementById('ringFill');
+  ring.style.strokeDashoffset = circumference - (circumference*pct/100);
+
+  const nextWrap = document.getElementById('nextCardWrap');
+  if(nextStep){
+    nextWrap.innerHTML = `
+      <div class="next-card">
+        <div class="dot"></div>
+        <div style="flex:1">
+          <div class="t">${nextStep.title}</div>
+          <div class="w">${nextPhase.title} · ${nextStep.who}</div>
+          <button id="jumpToStep">Go to Steps</button>
+        </div>
+      </div>`;
+    document.getElementById('jumpToStep').addEventListener('click', ()=>{
+      state.openPhase = nextPhase.id;
+      setTab('steps');
+      renderSteps();
+    });
+  } else {
+    nextWrap.innerHTML = `<div class="all-done">All steps complete — nice work.</div>`;
+  }
+
+  const scen = state.scenario;
+  const estTotal = CATEGORIES.reduce((a,c)=>a+c[scen],0);
+  const spent = CATEGORIES.reduce((a,c)=>a+(state.catActual[c.id]||0),0);
+  document.getElementById('ovBudget').textContent = kr(state.totalBudget);
+  document.getElementById('ovScenarioLabel').textContent = scen;
+  document.getElementById('ovEstimate').textContent = kr(estTotal);
+  document.getElementById('ovSpent').textContent = kr(spent);
+  const pctSpent = state.totalBudget>0 ? Math.min(100, spent/state.totalBudget*100) : 0;
+  const fill = document.getElementById('ovBarFill');
+  fill.style.width = pctSpent+'%';
+  fill.classList.toggle('over', spent>state.totalBudget);
+}
+
+/* ---------- Steps ---------- */
+function renderSteps(){
+  const root = document.getElementById('phasesRoot');
+  root.innerHTML = '';
+  PHASES.forEach((phase, idx)=>{
+    const doneCount = phase.steps.filter(s=>state.stepDone[s.id]).length;
+    const complete = doneCount === phase.steps.length;
+    const open = state.openPhase === phase.id;
+
+    const item = document.createElement('div');
+    item.className = 'phase-item' + (complete?' complete':'') + (open?' open':'');
+
+    const head = document.createElement('button');
+    head.className = 'phase-head';
+    head.innerHTML = `
+      <div class="phase-num">${idx+1}</div>
+      <div class="titles">
+        <div class="pt">${phase.title}</div>
+        <div class="pw">${phase.when}</div>
+      </div>
+      <div class="count">${doneCount}/${phase.steps.length}</div>
+      <svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
+    `;
+    head.addEventListener('click', ()=>{
+      state.openPhase = (state.openPhase === phase.id) ? null : phase.id;
+      save();
+      renderSteps();
+    });
+    item.appendChild(head);
+
+    const body = document.createElement('div');
+    body.className = 'phase-body';
+    phase.steps.forEach(step=>{
+      const done = !!state.stepDone[step.id];
+      const catInfo = step.cost ? CATEGORIES.find(c=>c.id===step.cost) : null;
+      const detailOpen = state.openStepDetail === step.id;
+      const div = document.createElement('div');
+      div.className = 'step' + (done?' done':'');
+      div.innerHTML = `
+        <div class="step-row">
+          <input type="checkbox" class="step-check" id="chk-${step.id}" ${done?'checked':''}>
+          <div style="flex:1">
+            <div class="step-title" data-step="${step.id}">${step.title}</div>
+            <div class="step-meta">
+              <span class="who-chip">${step.who}</span>
+              ${catInfo ? `<span class="cost-chip">Est. ${kr(catInfo[state.scenario])}</span>` : ''}
+            </div>
+            <div class="step-detail ${detailOpen?'open':''}" id="detail-${step.id}">
+              <div class="step-desc">${step.desc}</div>
+              <textarea placeholder="Notes — contact, phone, date booked" data-notes="${step.id}">${state.stepNotes[step.id]||''}</textarea>
+            </div>
+          </div>
+        </div>
+      `;
+      body.appendChild(div);
+    });
+    item.appendChild(body);
+    root.appendChild(item);
+  });
+
+  root.querySelectorAll('.step-check').forEach(chk=>{
+    chk.addEventListener('change', e=>{
+      const id = e.target.id.replace('chk-','');
+      state.stepDone[id] = e.target.checked;
+      save();
+      renderSteps();
+      renderOverview();
+    });
+  });
+  root.querySelectorAll('.step-title').forEach(t=>{
+    t.addEventListener('click', ()=>{
+      const id = t.dataset.step;
+      state.openStepDetail = (state.openStepDetail===id) ? null : id;
+      save();
+      renderSteps();
+    });
+  });
+  root.querySelectorAll('textarea[data-notes]').forEach(ta=>{
+    ta.addEventListener('input', e=>{
+      state.stepNotes[e.target.dataset.notes] = e.target.value;
+      save();
+    });
+    ta.addEventListener('click', e=>e.stopPropagation());
+  });
+}
+
+/* ---------- Budget ---------- */
+function renderBudget(){
+  document.querySelectorAll('.scenario-btn').forEach(b=>{
+    b.classList.toggle('active', b.dataset.scenario===state.scenario);
+  });
+  document.getElementById('totalBudget').value = state.totalBudget;
+
+  const scen = state.scenario;
+  const estTotal = CATEGORIES.reduce((a,c)=>a+c[scen],0);
+  const spent = CATEGORIES.reduce((a,c)=>a+(state.catActual[c.id]||0),0);
+  document.getElementById('estTotal').textContent = kr(estTotal);
+  document.getElementById('spentTotal').textContent = kr(spent);
+
+  const pct = state.totalBudget>0 ? Math.min(100, spent/state.totalBudget*100) : 0;
+  const fill = document.getElementById('budgetBarFill');
+  fill.style.width = pct+'%';
+  const over = spent > state.totalBudget;
+  fill.classList.toggle('over', over);
+  document.getElementById('spentStat').classList.toggle('over', over);
+
+  const note = document.getElementById('budgetNote');
+  const diff = estTotal - state.totalBudget;
+  if(diff > 0){
+    note.textContent = `${scen[0].toUpperCase()+scen.slice(1)} estimate runs ${kr(diff)} above your budget.`;
+  } else {
+    note.textContent = `${scen[0].toUpperCase()+scen.slice(1)} estimate fits within budget, with ${kr(Math.abs(diff))} to spare.`;
+  }
+
+  const catCard = document.getElementById('catCard');
+  catCard.innerHTML = '';
+  CATEGORIES.forEach(cat=>{
+    const row = document.createElement('div');
+    row.className = 'cat-row';
+    row.innerHTML = `
+      <div>
+        <div class="cat-name">${cat.name}</div>
+        <div class="cat-est">Est. ${kr(cat[scen])}</div>
+      </div>
+      <input type="number" class="kr-input actual-input" data-cat="${cat.id}" placeholder="0" value="${state.catActual[cat.id] ?? ''}" min="0" step="100">
+    `;
+    catCard.appendChild(row);
+  });
+  catCard.querySelectorAll('.actual-input').forEach(inp=>{
+    inp.addEventListener('input', e=>{
+      const val = parseFloat(e.target.value);
+      state.catActual[e.target.dataset.cat] = isNaN(val)?0:val;
+      save();
+      renderBudget();
+      renderOverview();
+    });
+  });
+}
+
+function renderAll(){
+  renderOverview();
+  renderSteps();
+  renderBudget();
+}
+
+async function init(){
+  loadLocal();
+  applyTheme();
+  setTab(state.activeTab || 'overview');
+  renderAll();
+
+  setSyncStatus('Syncing…');
+  await loadRemote();
+  applyTheme();
+  renderAll();
+
+  document.querySelectorAll('.tab-btn').forEach(b=>{
+    b.addEventListener('click', ()=> setTab(b.dataset.tab));
+  });
+
+  document.getElementById('themeBtn').addEventListener('click', ()=>{
+    const cur = document.documentElement.getAttribute('data-theme');
+    state.theme = (cur==='dark') ? 'light' : (cur==='light' ? null : 'dark');
+    applyTheme();
+    save();
+  });
+
+  document.querySelectorAll('.scenario-btn').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      state.scenario = b.dataset.scenario;
+      save();
+      renderBudget();
+      renderOverview();
+    });
+  });
+
+  document.getElementById('totalBudget').addEventListener('input', e=>{
+    const val = parseFloat(e.target.value);
+    state.totalBudget = isNaN(val)?0:val;
+    save();
+    renderBudget();
+    renderOverview();
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', ()=>{
+    if(confirm('Reset all checkmarks, notes and spending? This can\u2019t be undone.')){
+      state = {theme:state.theme, activeTab:'overview', scenario:'mid', totalBudget:50000, openPhase:null, stepDone:{}, stepNotes:{}, catActual:{}};
+      save();
+      setTab('overview');
+      renderAll();
+    }
+  });
+}
+
+init();
+</script>
+</body>
+</html>
